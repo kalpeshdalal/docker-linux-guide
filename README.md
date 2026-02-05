@@ -1,46 +1,120 @@
-WSL INSTALLATION 
-__________________
 
-1. wsl --install 
-2. Restart Computer 
-3. Enter the Linux Environment : "wsl"
-4. Update the package list : sudo apt update 
-5. Install Docker : sudo apt install docker.io -y
-6. Start the Docker engine : sudo service docker start
-7. To stop docker service : sudo service docker stop
-8. In PowerShell, run this command to "kill" the Linux subsystem and free up all resources: wsl --shutdown
-______________________________________________________________________
+# WSL Installation & Database Setup Guide
 
-Set-up Databases 
 
-To setup Postgres
 
+## WSL Installation
+
+1. Install WSL  
+   ```bash
+   wsl --install
+   ```
+2. Restart Computer
+3. Enter the Linux Environment  
+   ```bash
+   wsl
+   ```
+4. Update the package list  
+   ```bash
+   sudo apt update
+   ```
+5. Install Docker  
+   ```bash
+   sudo apt install docker.io -y
+   ```
+6. Start the Docker engine  
+   ```bash
+   sudo service docker start
+   ```
+7. Stop Docker service  
+   ```bash
+   sudo service docker stop
+   ```
+8. Kill the Linux subsystem and free resources (PowerShell)  
+   ```powershell
+   wsl --shutdown
+   ```
+
+---
+
+## Set-up Databases
+
+### PostgreSQL
+Run the following command:
+```bash
 sudo docker run --name my-postgres -e POSTGRES_PASSWORD=admin -p 5432:5432 -d postgres
+```
 
-username: postgres
-pass: admin
+- **Username:** postgres  
+- **Password:** admin  
 
-To setup MongoDB 
+---
 
+### MongoDB
+Run the following command:
+```bash
 sudo docker run --name my-mongo -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo
+```
 
-username: admin 
-password: admin
+- **Username:** admin  
+- **Password:** admin  
 
-_____________________________________________________________________________________________
+---
 
+## Usage Steps
 
-Step start Ubuntu -  PowerShell -> type  "wsl"  (now you are into ubuntu system) -> pass: KalpeshDalal@1008
-To Exit : type "exit" 
-To start Docker engine : sudo docker service start 
-List down all docker running services : sudo docker ps -a 
-To Wake up your database (Postgres) : sudo docker start my-postgres 
-To start mongodb : sudo docker start  my-mongo
-To stop specific service  : sudo docker stop my-mongo
-To stop all services : sudo docker stop $(sudo docker ps -q)
-_____________________________________________________________________________________________
+- Start Ubuntu (PowerShell):  
+  ```powershell
+  wsl
+  ```
+  **Password:** `KalpeshDalal@1008`
 
+- Exit Ubuntu:  
+  ```bash
+  exit
+  ```
 
-Remove Docker container :  sudo docker rm -f my-mongo
+- Start Docker engine:  
+  ```bash
+  sudo service docker start
+  ```
 
-Check Live Resource Usage: sudo docker stats
+- List all Docker running services:  
+  ```bash
+  sudo docker ps -a
+  ```
+
+- Start PostgreSQL:  
+  ```bash
+  sudo docker start my-postgres
+  ```
+
+- Start MongoDB:  
+  ```bash
+  sudo docker start my-mongo
+  ```
+
+- Stop specific service (MongoDB):  
+  ```bash
+  sudo docker stop my-mongo
+  ```
+
+- Stop all services:  
+  ```bash
+  sudo docker stop $(sudo docker ps -q)
+  ```
+
+---
+
+## Maintenance Commands
+
+- Remove Docker container (MongoDB):  
+  ```bash
+  sudo docker rm -f my-mongo
+  ```
+
+- Check live resource usage:  
+  ```bash
+  sudo docker stats
+  ```
+
