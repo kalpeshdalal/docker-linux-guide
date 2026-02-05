@@ -1,0 +1,46 @@
+WSL INSTALLATION 
+__________________
+
+1. wsl --install 
+2. Restart Computer 
+3. Enter the Linux Environment : "wsl"
+4. Update the package list : sudo apt update 
+5. Install Docker : sudo apt install docker.io -y
+6. Start the Docker engine : sudo service docker start
+7. To stop docker service : sudo service docker stop
+8. In PowerShell, run this command to "kill" the Linux subsystem and free up all resources: wsl --shutdown
+______________________________________________________________________
+
+Set-up Databases 
+
+To setup Postgres
+
+sudo docker run --name my-postgres -e POSTGRES_PASSWORD=admin -p 5432:5432 -d postgres
+
+username: postgres
+pass: admin
+
+To setup MongoDB 
+
+sudo docker run --name my-mongo -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo
+
+username: admin 
+password: admin
+
+_____________________________________________________________________________________________
+
+
+Step start Ubuntu -  PowerShell -> type  "wsl"  (now you are into ubuntu system) -> pass: KalpeshDalal@1008
+To Exit : type "exit" 
+To start Docker engine : sudo docker service start 
+List down all docker running services : sudo docker ps -a 
+To Wake up your database (Postgres) : sudo docker start my-postgres 
+To start mongodb : sudo docker start  my-mongo
+To stop specific service  : sudo docker stop my-mongo
+To stop all services : sudo docker stop $(sudo docker ps -q)
+_____________________________________________________________________________________________
+
+
+Remove Docker container :  sudo docker rm -f my-mongo
+
+Check Live Resource Usage: sudo docker stats
